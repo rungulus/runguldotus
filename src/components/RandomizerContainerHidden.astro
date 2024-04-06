@@ -1,0 +1,44 @@
+<randomizer>
+    <div class="collapse" id="randomizerwindow">
+      <div class="container frostedglass pt-3 pb-2 mb-3">
+        <p class="fs-3 mb-n2 mt-n runguszone">
+          the <span style="color:#69f0ae">r</span>andomizer
+        </p>
+        <div class="ratio ratio-16x9">
+          <div id="player" style="border-radius: 10px;">
+            <div class="ratio">
+              <button
+                class="btn"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#randomizercontrols"
+                aria-expanded="false"
+                aria-controls="randomizercontrols"
+                aria-label="load randomizer"
+              >
+                <i
+                  class="bi bi-play-circle-fill"
+                  style="font-size:500%"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="btn-group-sm">
+          <button
+            class="btn btn-success mb-2 mt-n"
+            onclick="reroll();">re-roll</button
+          >
+          <button
+            class="btn btn-danger mb-2 mt-n"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#randomizerwindow"
+            aria-expanded="true"
+            aria-controls="randomizercontrols"
+            aria-label="load randomizer">close</button
+          >
+        </div>
+      </div>
+    </div>
+  </randomizer>

@@ -1,47 +1,78 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import ContainerBlur from "../layouts/containerblur.astro";
+import Foot from "../components/foot.astro";
+import Pagelogo from "../components/pagelogo.astro";
+import Sidebar from "../components/sidebar.astro";
+import Head from "../components/head.astro";
+import RandomizerContainerHidden from "../components/RandomizerContainerHidden.astro";
 ---
 
-<Layout title="rungul.us">
-	<main>
-		<h1 style="height:50%;">Tell them to bring out the whole <span class="text-gradient">Ocean!!!</span></h1>
-	</main>
-</Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		/* width: 800px; */
-		/*max-width: calc(100% - 2rem);*/
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-		vertical-align: middle;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		vertical-align: middle;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-</style>
+<html lang="en" data-bs-theme="dark" class="spaceBG">
+  <Head />
+  <Sidebar />
+  <div class="container-fluid z-n1 position-absolute">
+    <Pagelogo />
+    <div class="container">
+      <helloarea>
+        <ContainerBlur>
+          <p
+            class="hello text-center margin-negative-for-main-text m-0 mb-n mt-n"
+          >
+            hey
+          </p>
+          <p
+            class="text-center margin-negative-for-main-text fs-5 mb-n runguszone"
+          >
+            welcome to the <span style="color:#69f0ae">r</span>ungus zo- wait
+            what?
+          </p>
+        </ContainerBlur>
+      </helloarea>
+      <maincontent>
+        <ContainerBlur>
+          <div class="align-content-center">
+            <div class="text-center">
+              <p class="fs-1 runguszone mb-n mt-n">where are you?</p>
+              <p class="mb-1">
+                welcome to rungul.us a place where im going to have a site to do
+                idk
+              </p>
+              <!-- <p>
+                My favorite is probably <a
+                  class="alert-link"
+                  id="placeholder"
+                  data-bs-toggle="collapse"
+                  href="#randomizerwindow"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="randomizerShow">the randomizer</a
+                >, but I've made other dumb things.
+              </p>
+              <RandomizerContainerHidden /> -->
+              <hr />
+              <p class="fs-2 runguszone mb-n">cool?</p>
+              <p class="mb-1">
+                yeah it's neat i guess! right now i'm using this site to learn
+                astro, which is why it looks like rungus.zone
+              </p>
+              <hr />
+              <p class="fs-3 runguszone mb-n">this isn't exciting</p>
+              <p>yeah get out:</p>
+              <a
+                class="fs-3 runguszone mb-3 text-center text-decoration-none"
+                href="https://en.wikipedia.org/wiki/Content_delivery_network"
+              >
+                <span
+                  class="fs-4 badge bg-primary rounded-pill text-center text-decoration-underline pb-1"
+                  >return to rungus.zone</span
+                >
+              </a>
+            </div>
+            <!-- although, im not really sold on this at all honestly. its just a bunch of text in line. there's gotta be a cooler way to show this? -->
+          </div>
+        </ContainerBlur>
+      </maincontent>
+    </div>
+    <Foot />
+  </div>
+</html>
