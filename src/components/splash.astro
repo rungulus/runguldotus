@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import HeroImage from "~/components/hero-image.astro";
+import Starfield from "~/components/starfield.astro";
+
+const widths = [450, 800];
+const sizes = "(min-width: 640px) 42vw, 67vw";
+---
+
+<section class="relative h-full bg-black">
+  <Starfield />
+  <div id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
+    <HeroImage />
+  </div>
+  <div class="relative grid h-full place-items-center">
+    <h2
+      class="flex flex-col items-center gap-2 self-end sm:gap-4 sm:self-auto"
+    >
+      <div
+        class="gradient-text text-center font-extrabold tracking-tighter text-8xl p-10"
+      >
+        welcome to the rungus zone
+      </div>
+    </h2>
+  </div>
+</section>
+
+<noscript>
+  <style>
+    #splash-bg-fallback {
+      display: block;
+    }
+  </style>
+</noscript>

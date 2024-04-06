@@ -1,0 +1,44 @@
+---
+import CompatibilityList from "~/components/things-list.astro";
+import ContentSection from "~/components/content-section.astro";
+import type { CompatibilityItem } from "~/types";
+
+const things: Array<CompatibilityItem> = [
+  {
+    title: "Bucket",
+    icon: "mdi:pail",
+    url: "https://github.com/rungulus/Bucket",
+  },
+  {
+    title: "the randomizer",
+    icon: "mdi:shuffle-variant",
+    url: "https://rungus.zone/randomizer",
+  },
+  {
+    title: "Rung9K",
+    icon: "mdi:robot",
+    url: "https://github.com/rungulus/rung9k",
+  },
+  {
+    title: "RT Archive",
+    icon: "mdi:archive",
+    url: "https://archiveofpimps.com",
+  },
+  {
+    title: "rungnews",
+    icon: "mdi:newspaper",
+    url: "https://github.com/rungulus/rungnews",
+  },
+];
+---
+
+<ContentSection title="tell me about those silly things" id="silly things">
+  <Fragment slot="lead">
+    you got it boss
+  </Fragment>
+  <CompatibilityList
+    items={things}
+    title="things"
+    url="https://github.com/rungulus"
+  />
+</ContentSection>
