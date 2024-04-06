@@ -197,11 +197,13 @@
 
   function onPlayerReady(event) {
     event.target.playVideo();
-    buttonText.set('Re-roll');
+    buttonText.update(() => 're-roll');
   }
 
   function onPlayerStateChange(event) {
-    if (event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.UNSTARTED) {
+    // Only reroll if the video has ended or not started after at least one play
+    if (event.data === YT.PlayerState.ENDED ||
+        (event.data === YT.PlayerState.UNSTARTED && $buttonText !== 'load randomizer')) {
       reroll();
     }
   }
