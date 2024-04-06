@@ -1,6 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
 import HeroImage from "~/components/hero-image.astro";
 import Starfield from "~/components/starfield.astro";
+import Randomizer from "./randomizer.svelte";
 
 const widths = [450, 800];
 const sizes = "(min-width: 640px) 42vw, 67vw";
@@ -12,15 +14,7 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
     <HeroImage />
   </div>
   <div class="relative grid h-full place-items-center">
-    <h2
-      class="flex flex-col items-center gap-2 self-end sm:gap-4 sm:self-auto"
-    >
-      <div
-        class="gradient-text text-center font-extrabold tracking-tighter text-8xl p-10"
-      >
-        welcome to the rungus zone
-      </div>
-    </h2>
+    <Randomizer client:only/>
   </div>
 </section>
 
