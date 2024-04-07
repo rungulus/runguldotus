@@ -8,6 +8,8 @@
   let randURLs = [];
   let videoTitle = writable("");
   let useTrueRandom = false;
+  let isLoading = writable(false);
+  let invalidIDsCount = 0;
 
   onMount(async () => {
     try {
@@ -86,23 +88,59 @@
   function onPlayerStateChange(event) {
     if (playerLoaded) {
       if (event.data === YT.PlayerState.PLAYING) {
-        videoTitle.set(player.getVideoData().title);
+        document.getElementById("player").style.display = "";
+        invalidIDsCount = 0; // Reset the invalid video IDs counter
+        isLoading.set(false);
       }
     }
     if (playerLoaded && event.data === YT.PlayerState.ENDED) {
       reroll();
     }
+    if (
+      event.data === YT.PlayerState.PLAYING ||
+      event.data === YT.PlayerState.ENDED ||
+      event.data === YT.PlayerState.CUED
+    ) {
+      isLoading.set(false); // Set to false when the video starts playing, ends, or is cued
+    }
   }
 
   function onPlayerError(event) {
+    // Handle specific YouTube player errors
     if ([2, 5, 9, 11, 101, 150].includes(event.data)) {
-      console.error(`YouTube Player error: ${event.data}`);
-      if (useTrueRandom) {
-        setTimeout(reroll, 0);
-      } else {
-        setTimeout(reroll, 500);
+      invalidIDsCount++;
+      if (invalidIDsCount >= 2) {
+        isLoading.set(true); // Show loading indicator
+        document.getElementById("player").style.display = "none"; // Hide player
+        document.getElementById("videoidfailcount").innerHTML = invalidIDsCount;
       }
+
+      // Ensure we continue rerolling even when loading screen is up
+      continueRerolling();
+    } else {
+      // Handle other errors separately if needed
+      console.error(`YouTube Player error: ${event.data}`);
     }
+  }
+
+  function continueRerolling() {
+    // Use a small delay before rerolling again to prevent errors
+    setTimeout(
+      () => {
+        reroll();
+      },
+      useTrueRandom ? 100 : 500,
+    );
+  }
+
+  function reroll() {
+    if (invalidIDsCount < 2) {
+      isLoading.set(false); // Only hide the loading indicator if there haven't been 2 errors in a row
+      document.getElementById("player").style.display = ""; // Show player
+    }
+    const randomvideo = getRandomVideoId();
+    player.loadVideoById(randomvideo);
+    buttonText.set("reroll");
   }
 
   function getRandomVideoId() {
@@ -133,14 +171,7 @@
     var fullURL = "https://www.youtube-nocookie.com/embed/" + videoId;
     console.log("video id:", videoId);
     console.log("video url:", fullURL);
-
     return videoId;
-  }
-
-  function reroll() {
-    const randomvideo = getRandomVideoId();
-    player.loadVideoById(randomvideo);
-    buttonText.set("reroll");
   }
 </script>
 
@@ -243,15 +274,50 @@
       {$buttonText}
     </button>
   </p>
+
   <div class="mt-3">
-    <div id="player"></div>
+    {#if $isLoading}
+      <section
+        class="bg-white dark:bg-gray-900"
+        style="height:720px;width:1280px;"
+      >
+        <div
+          class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 mt-30"
+        >
+          <h1
+            class="gradient-text mb-4 mt-10 my-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white py-10"
+          >
+            the randomizer is searching
+          </h1>
+          <p
+            class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400"
+          >
+            searching for a video will probably take a while
+          </p>
+          <div
+            class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 text-gray-500"
+          >
+            checked <kbd
+              id="videoidfailcount"
+              class="mx-2 px-1 bg-black text-gray-400 font-mono rounded">2</kbd
+            > video ids.
+          </div>
+          <div
+            class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 text-gray-500"
+          >
+            if video ids stop going up, press the reroll button
+          </div>
+          <p
+            class="mt-10 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400"
+          >
+            you can turn off true random below to go back to curated mode.
+          </p>
+        </div>
+      </section>
+    {:else}
+      <div id="player" class="mt-3"></div>
+    {/if}
   </div>
-  <!-- <label for="randomizer-switch">Use Custom Randomizer:</label>
-  <input
-    type="checkbox"
-    id="randomizer-switch"
-    on:change={() => (useTrueRandom = !useTrueRandom)}
-  /> -->
   <label
     for="randomizer-switch"
     class="inline-flex items-center cursor-pointer mt-1"
