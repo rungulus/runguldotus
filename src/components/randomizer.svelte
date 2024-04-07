@@ -98,7 +98,7 @@
     if ([2, 5, 9, 11, 101, 150].includes(event.data)) {
       console.error(`YouTube Player error: ${event.data}`);
       if (useTrueRandom) {
-        setTimeout(reroll, 100);
+        setTimeout(reroll, 0);
       } else {
         setTimeout(reroll, 500);
       }
@@ -126,7 +126,8 @@
     var videoId = "";
 
     for (var i = 0; i < videoIdLength; i++) {
-      videoId += elements.charAt(Math.floor(Math.random() * elements.length));
+      var randomIndex = Math.floor(Math.random() * elements.length);
+      videoId += elements[randomIndex];
     }
 
     var fullURL = "https://www.youtube-nocookie.com/embed/" + videoId;
