@@ -56,9 +56,9 @@
       videoId: "", // Initialize the player without a video ID
       playerVars: {
         autoplay: 0,
-        controls: 0,
+        controls: 1,
         rel: 0,
-        fs: 0,
+        fs: 1,
         playsinline: 1,
       },
       events: {
