@@ -2,8 +2,8 @@
 import "@fontsource-variable/inter";
 import Footer from "~/components/footer.astro";
 import Header from "~/components/header.astro";
-import Intro from "~/components/intro.astro";
 import RandomizerContainer from "~/components/covercontainer.astro";
+import ContentSection from "~/components/content-section.astro";
 import "~/styles/index.css";
 
 const { generator, site } = Astro;
@@ -60,7 +60,16 @@ const description =
     <Header />
     <RandomizerContainer/>
     <div class="space-y-24 px-8 py-32">
-      <Intro />
+      <ContentSection id="description" title="what's this?">
+        <Fragment slot="lead">
+          welcome to <span class="gradient-text">the randomizer</span>, a silly site to find silly videos
+          on the computer!
+        </Fragment>
+        <Fragment>
+          let me know if you run into issues, contact me on discord or twitter at @rungulus<br>
+        </Fragment>
+      </ContentSection>
+      <ContentSection id="fun" title="have fun <3" />
     </div>
     <Footer />
   </body>
