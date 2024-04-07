@@ -171,7 +171,7 @@
       class="gradient-text text-center font-extrabold tracking-tighter text-xl py-10 mb-3"
     >
       the randomizer</span
-    >
+    ><span class="gradient-text text-xs ps-1">v4</span>
     <button
       class="select-none
       rounded-lg bg-gradient-to-tr from-indigo-500 from-10% via-sky-500 via-30% to-green-500
@@ -346,16 +346,16 @@
       on:change={toggleTrueRandom}
     />
     <div
-      class="relative 
-      w-11 
-      h-6 
+      class="
+      relative 
+      w-9 
+      h-5 
       bg-gray-200 
       peer-focus:outline-none 
       peer-focus:ring-4 
       peer-focus:ring-blue-300 
       dark:peer-focus:ring-blue-800 
-      rounded-full 
-      peer 
+      rounded-full peer 
       dark:bg-gray-700 
       peer-checked:after:translate-x-full 
       rtl:peer-checked:after:-translate-x-full 
@@ -366,14 +366,13 @@
       after:border-gray-300 
       after:border 
       after:rounded-full 
-      after:h-5 
-      after:w-5 
+      after:h-4 after:w-4 
       after:transition-all 
       dark:border-gray-600 
       peer-checked:bg-gradient-to-tr from-indigo-500 from-10% via-sky-500 via-30% to-green-500"
     ></div>
-    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"
-      >true random (experimental!)</span
+    <span class="ms-3 text-xs font-medium text-gray-600 "
+      >true random </span
     >
   </label>
 </div>
