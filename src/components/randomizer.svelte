@@ -107,10 +107,11 @@
 
   function onPlayerError(event) {
     invalidIDsCount++;
-    if (invalidIDsCount >= 2) {
+    if (invalidIDsCount >= 2 && useTrueRandom) {
       isLoading.set(true); // Show loading indicator
       document.getElementById("player").style.display = "none"; // Hide player
       document.getElementById("videoidfailcount").innerHTML = invalidIDsCount;
+      continueRerolling();
     }
     continueRerolling();
   }
@@ -292,7 +293,7 @@
           >
             checked <kbd
               id="videoidfailcount"
-              class="mx-2 px-1 bg-black text-gray-400 font-mono rounded">2</kbd
+              class="mx-2 px-1 bg-black text-gray-400 font-mono rounded">3</kbd
             > video ids.
           </div>
           <div
