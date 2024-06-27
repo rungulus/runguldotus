@@ -307,7 +307,7 @@
             class="select-none
           rounded-lg bg-gray-600
           py-2 px-2
-          text-center align-middle font-sans text-xs
+          text-center align-middle font-sans
           text-white
           shadow-md shadow-gray-900/10
           transition-all hover:shadow-lg
